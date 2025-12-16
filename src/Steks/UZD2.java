@@ -50,5 +50,38 @@ private static int spSk = 0;
 	 
  }
 	}
+	private static void veiktSpeli() {
+		if(spSk >= 3) {
+			JOptionPane.showMessageDialog(null, "Ir jau izpeletas 3 speles!", "Beigas",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
+		if(izlMin != -1) {
+			if(virMin - izlMin < 1) {
+				JOptionPane.showMessageDialog(null, "Nakamo speli var sakt tikai pec 1 virMin","Kluda", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
+		if(steks.size()<3) {
+			JOptionPane.showMessageDialog(null, "Steka nepietiek bumbinu","Kluda",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		Random rand = new Random();
+		StringBuilder rezultats = new StringBuilder();
+		rezultats.append("Spele ").append(spSk + 1).append(" (3 bumbunas): \n");
+		
+		for(int i = 0; i< 3; i++) {
+			int noSteka = steks.pop();
+			int nejauzs = rand.nextInt(10);
+			steks.push(noSteka);
+			steks.push(nejauzs);
+			rezultats.append("Bumbina").append(i + 1).append("; ").append(noSteka).append(" + ").append(nejauzs).append("\n");
+			
+		}
+		spSk++;
+	izlMin = virMin;
+	JOptionPane.showMessageDialog(null, rezultats.toString(),"Speles rezultats",JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 }
 
