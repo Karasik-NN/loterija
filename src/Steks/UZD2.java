@@ -20,35 +20,37 @@ private static int spSk = 0;
 	 String[]opcijas = {
 			 "Spelet izlosi","Apskatit laimigos skaitlus","Pievienot +1 minute","Apturet"};	  
 	 
-	 String izvele = (String)JOptionPane.showInputDialog(null,
-				"Izvelies darbibu", "DArbibu saraksts",
-				JOptionPane.QUESTION_MESSAGE,null,
-				opcijas, opcijas[0]);
-	 if(izvele == null)
-			izvele = "Apturet";
+	 int izvele = JOptionPane.showOptionDialog(null, "Virtual laiks(min)"+virMin+ "\nIzpeletas speles: "+spSk+"/3","Loterija",
+			  JOptionPane.DEFAULT_OPTION,
+			  JOptionPane.INFORMATION_MESSAGE,
+			  null,
+			  opcijas,
+			  opcijas[0]);
+	 
 	 do {
 		 switch(izvele){
 		 
-		 case "Spelet izlosi":
+		 case 0:
 			 veiktSpeli();
 			 break;
 			 
-		 case"Apskatit laimigos skaitlus":
-			 paradiSteku();
+		 case 1:
+		 paradiSteku();
 			 break;
 			 
-		 case"Pievienot +1 minute":
-			 virMin++;
-			 JOptionPane.showMessageDialog(null, "Pievienota 1 minute"+virMin,"Laiks",JOptionPane.INFORMATION_MESSAGE);
+		 case 3:
+			 virMin();
 			 break;
-		 case"Apturet":
+			 
+		 case 4:
 			 JOptionPane.showMessageDialog(null, "Programma ir aptureta","Apturesana",JOptionPane.INFORMATION_MESSAGE);
 			 break;
-		 }
-	 }while(!izvele.equals("Apturet"));
-	 
-	 
+		 }while(izvele !=4);
+	 }while(izvele !=4);
  }
+	 
+	 
+ 
 	}
 	private static void veiktSpeli() {
 		if(spSk >= 3) {
@@ -82,6 +84,13 @@ private static int spSk = 0;
 	izlMin = virMin;
 	JOptionPane.showMessageDialog(null, rezultats.toString(),"Speles rezultats",JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+	private static void paradiSteku() {
+		JOptionPane.showMessageDialog(null, "Laimigo skaitlu steks:\n"+steks.toString(),"Steks",JOptionPane.INFORMATION_MESSAGE);
+	}
+	private static void virMin() {
+		virMin++;
+		return;
+		
+	}
 }
 
